@@ -11,7 +11,7 @@ def main():
     client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     client.connect(Dir)
 
-    archivo = open("FileTransfer/Archivo.txt")
+    archivo = open("ArchivoMuestra.txt")
     datos = archivo.read()
 
     client.send("Archivo.txt".encode(Formato))
