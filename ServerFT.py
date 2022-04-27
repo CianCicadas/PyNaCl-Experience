@@ -11,14 +11,14 @@ Formato = "utf-8"
 Tamanio = 1024
 
 def cifrar(nArchivo, llave):
-    archivoSC = open("DatosServidor/"+nArchivo, "rb")
+    archivoSC = open(nArchivo, "rb")
     datosSC = archivoSC.read()
     archivoSC.close()
 
     cont = nacl.secret.SecretBox(llave)
     datosCC = cont.encrypt(datosSC)
 
-    archivoCC = open("DatosServidor/"+"CC-"+nArchivo, "wb")
+    archivoCC = open("CC-"+nArchivo, "wb")
     archivoCC.write(datosCC)
     archivoCC.close()
 
@@ -36,7 +36,7 @@ def main():
 
         nArchivo = conx.recv(Tamanio).decode(Formato)
         print(f"[Recibido] {nArchivo} recibido")
-        archivo = open("DatosServidor/"+nArchivo, "w")
+        archivo = open(nArchivo, "w")
         conx.send("Nombre de archivo recibido".encode(Formato))
 
         datos = conx.recv(Tamanio).decode(Formato)
